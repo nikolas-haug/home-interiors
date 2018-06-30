@@ -1,0 +1,74 @@
+<div style="padding-bottom: 100px">
+</div>
+<div class="container">
+    <div class="row" id="providers-row">
+        <div class="col-12">
+            <p>Display by budget:
+                <a href="/vendors/low">
+                    <button class="btn btn-light">Low</button>
+                </a>
+                <a href="/vendors/medium">
+                    <button class="btn btn-light">Medium</button>
+                </a>
+                <a href="/vendors/high">
+                    <button class="btn btn-light">High</button>
+                </a>
+                <a href="/vendors">
+                    <button class="btn btn-light">All</button>
+                </a>
+            </p>
+        </div>
+    </div>
+
+        {{!-- <div class="row">
+            <div>
+                <h1 class="text-center">Doors</h1>
+            </div>
+        </div> --}}
+        
+        <div class="row">
+
+            {{#each products}}
+                {{#if this.image}}
+                    <div class="col-md-4 col-sm-12 text-center" id="product-div">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">${{this.price}}</h5>
+                                <p class="card-text">{{this.name}}</p>
+                                {{!-- form to add the chosen item to the user's database/profile --}}
+                                <form>
+                                    <button class="item-btn" type="submit" data-id="{{this.id}}" data-name="{{this.name}}" data-image="{{this.image}}" data-price="{{this.price}}">choose item</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                {{/if}}
+            {{/each}}
+
+</div>
+
+<script>
+
+    $('.item-btn').on('click', function() {
+        $.ajax({
+            url: "/item/create",
+            type: 'POST',
+            data: { 
+                id: $(this).attr('data-id'),
+                name: $(this).attr('data-name'),
+                image: $(this).attr('data-image'),
+                price: $(this).attr('data-price')
+            },
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {
+                alert(response.status);
+            },
+            error: function () {
+                alert("error");
+            }
+        }); 
+    });
+
+</script>
