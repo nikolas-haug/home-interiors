@@ -40,7 +40,7 @@ module.exports = function (app) {
             for (let i = 0; i < items.length; i++) {
                 let item = {};
 
-                item.id = items[i].itemId;
+                item.categoryId = items[i].itemId;
                 item.name = items[i].title;
                 item.image = items[i].pictureURLSuperSize;
                 item.price = items[i].sellingStatus.currentPrice.amount.toFixed(2);
