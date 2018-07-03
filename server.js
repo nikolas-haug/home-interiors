@@ -37,7 +37,7 @@ require("./app/config/passport/passport.js")(passport, models.user);
 require("./app/routes/api-routes.js")(app);
 // require("./app/routes/html-routes.js")(app);
 // require("./app/routes/package-routes.js")(app);
-require("./app/routes/item-routes")(app);
+require("./app/routes/item-routes.js")(app);
 
 
 // app.use("/vendors", apiRoutes);

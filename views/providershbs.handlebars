@@ -37,9 +37,9 @@
                                 <h5 class="card-title">${{this.price}}</h5>
                                 <p class="card-text">{{this.name}}</p>
                                 {{!-- form to add the chosen item to the user's database/profile --}}
-                                <form>
-                                    <button class="item-btn" type="submit" data-id="{{this.id}}" data-name="{{this.name}}" data-image="{{this.image}}" data-price="{{this.price}}">choose item</button>
-                                </form>
+                                {{!-- <form method="POST" action="/item/create"> --}}
+                                    <button class="item-btn" type="submit" data-id="{{this.categoryId}}" data-name="{{this.name}}" data-image="{{this.image}}" data-price="{{this.price}}">choose item</button>
+                                {{!-- </form> --}}
 
                             </div>
                         </div>
@@ -51,22 +51,26 @@
 
 <script>
 
+    
+
     $('.item-btn').on('click', function() {
-        $.ajax({
-            url: "/item/create",
-            type: 'POST',
-            data: { 
-                id: $(this).attr('data-id'),
+        
+        var btnVals = { 
+                categoryId: $(this).attr('data-id'),
                 name: $(this).attr('data-name'),
                 image: $(this).attr('data-image'),
                 price: $(this).attr('data-price')
-            },
-            contentType: 'application/json; charset=utf-8',
-            success: function (response) {
-                alert(response.status);
-            },
-            error: function () {
-                alert("error");
+            };
+
+        
+
+        $.ajax({
+            type: 'POST',
+            url: "/item/create",
+            data: btnVals,
+            dataType: "text",
+            success: function(resultData) { 
+                window.location.href = "/categories"
             }
         }); 
     });
