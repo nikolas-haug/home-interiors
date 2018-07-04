@@ -6,6 +6,9 @@ var express = require("express"),
     handlebars = require('handlebars'),
     passport = require('passport'),
     session = require('express-session'),
+    flash = require('express-flash-notification'),
+    cookieParser = require('cookie-parser'),
+    session = require('express-session'),
     PORT = process.env.PORT || 8080;
 
 var db = require("./app/models");
@@ -28,6 +31,8 @@ app.use("/public", express.static("./app/public"));
  app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true })); 
  app.use(passport.initialize());
  app.use(passport.session());
+ app.use(cookieParser());
+ app.use(flash());
 
  var models = require("./app/models");
 

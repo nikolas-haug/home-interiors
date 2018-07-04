@@ -1,2 +1,1 @@
 var db = require("../models");
-

@@ -1,9 +1,28 @@
+<div style ="padding-bottom: 150px"></div>
+
 <div class="container">
+<!-- User package CANNOT GET TO WORK -->
+    <div class="row" id="packages-row">
+    {{#each users}}
+        {{#if this.id}}
+            <div class="col-12">
+                <h1>{{capitalizeString this.firstname}}'s Package</h1>
+            </div>
+        {{/if}}
+    {{/each}}
+    </div>
 
+<!-- If no items have been added -->
+    {{#unless items}}
+        <div class="col-12">
+            <h3 class="text-center">It looks like you haven't created a package yet.</h3>
+            <p class="text-center">Head on over to <a href="/categories">our categories</a> to see our list of products available.</p>
+            <br>
+        </div>
+    {{/unless}}
+
+<!-- Display items in package -->
     <div class="row">
-
-    
-
     {{#each items}}
     {{!-- {{log this}} --}}
         {{#if this.image}}
@@ -25,8 +44,12 @@
             </div>
         {{/if}}
     {{/each}}
-
     </div>
 
-
+<!-- Requiring logic entered in package-routes.js -->
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center">TOTAL PACKAGE: ${{price}}</h2>
+        </div>
+    </div>
 </div>
