@@ -75,8 +75,17 @@ module.exports = function (app) {
             }, 
             include: [db.User]
         }).then(function(results) {
+            var price = 0;
+            for(var i = 0; i < results.length; i++) {
+                if(results[i].price) {
+                    price += parseInt(results[i].price);
+                }
+            }
+            price = price.toFixed(2);
+            
             var hbsObject = {
-                items: results
+                items: results,
+                price: price
             };
             console.log("=====================")
             console.log(results);
@@ -85,15 +94,41 @@ module.exports = function (app) {
         });
     });
 
-    app.delete("/package/delete/:id", function(req, res) {
-        db.Item.destroy({
-            where: {
-                id: req.params.id
-            }
-        }).then(function(results) {
-            res.redirect("/package");
-        });
-    });
+    // db.Packages.findAll({
+    //     include: ['venue', 'photographer', 'music', 'florist', 'kitchen', 'door'],
+    // }).then(function (results) {
+    //     var price = 0;
+    //     for (var i=0; i < results.length; i++) {
+    //         if (results[i].venue)
+    //             price += results[i].venue.price;
+    //         if (results[i].photographer)
+    //             price += results[i].photographer.price;
+    //         if (results[i].kitchen)
+    //             price += results[i].kitchen.price;
+    //         if (results[i].door)
+    //             price += results[i].door.price;
+    //         if (results[i].music)
+    //             price += results[i].music.price;
+    //         if (results[i].florist)
+    //             price += results[i].florist.price;
+    //     }
+
+    //     var hbsObject = {
+    //         package: results,
+    //         price: price
+    //     };
+    //     res.render("packagehbs", hbsObject);
+    // });
+
+    // app.delete("/package/delete/:id", function(req, res) {
+    //     db.Item.destroy({
+    //         where: {
+    //             id: req.params.id
+    //         }
+    //     }).then(function(results) {
+    //         res.redirect("/package");
+    //     });
+    // });
 
     // app.get("/vendors", function (req, res) {
     //     db.Providers.findAll({order: db.sequelize.col('price')})
