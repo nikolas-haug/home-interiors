@@ -4,8 +4,7 @@ module.exports = function (app) {
     
     app.post("/item/create", function(req, res) {
 
-        // console.log(req.body);
-        console.log(req.user);
+        // console.log(req.user);
 
         db.Item.create({
             categoryId: req.body.categoryId,
@@ -15,10 +14,8 @@ module.exports = function (app) {
             UserId: req.user.id
         })
         .then(function (result) {
-            console.log(result);
-            // res.json({success: true});
-            
-            // res.redirect("/categories/");
+            // console.log(result);
+            res.redirect("/categories");
         });
     });
 }

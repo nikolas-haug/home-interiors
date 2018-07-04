@@ -1,6 +1,17 @@
 <div style="padding-bottom: 100px">
 </div>
 <div class="container">
+
+    <!-- container for alert -->
+    <div class="container py-3" id="alerts-container">
+        <div class="alert alert-warning alert-dismissible mb-0" style="display: none" role="alert">
+            <strong>Item selected!</strong> - find it in your <a href="/package" class="alert-link">package</a>
+            <button type="button" class="close" aria-label="Close" id="alert-btn">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+
     <div class="row" id="providers-row">
         <div class="col-12">
             <p>Display by budget:
@@ -19,12 +30,6 @@
             </p>
         </div>
     </div>
-
-        {{!-- <div class="row">
-            <div>
-                <h1 class="text-center">Doors</h1>
-            </div>
-        </div> --}}
         
         <div class="row">
 
@@ -66,7 +71,9 @@
             data: btnVals,
             dataType: "text",
             success: function(resultData) { 
-                window.location.href = "/categories"
+    
+                $('.alert').show();
+                
             }
         }); 
     });

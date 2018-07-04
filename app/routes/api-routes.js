@@ -4,8 +4,6 @@ var ebay = require("ebay-api");
 
 module.exports = function (app) {
 
-    
-
     // Run the request
     app.get("/vendors/:category", function(req, res) {
 
@@ -55,19 +53,6 @@ module.exports = function (app) {
         );
     });
 
-    // app.get("/package", function(req, res) {
-    //     db.Item.findAll({
-    //         where: {
-    //             UserId: req.user.id
-    //         }
-    //     }).then(function(results) {
-    //         var hbsObject = {
-    //             items: results
-    //         };
-    //         res.render("package", hbsObject);
-    //     });
-    // });
-
     app.get("/package", function(req, res) {
         db.Item.findAll({
             where: {
@@ -85,7 +70,7 @@ module.exports = function (app) {
                     username = results[0].User.firstname;
                 }
             }
-            console.log(username);
+            //console.log(username);
             price = price.toFixed(2);
 
             var hbsObject = {
@@ -93,9 +78,6 @@ module.exports = function (app) {
                 price: price,
                 username: username
             };
-            console.log("=====================")
-            console.log(results);
-            console.log("=====================")
             res.render("package", hbsObject);
         });
     });
