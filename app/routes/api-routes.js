@@ -76,16 +76,22 @@ module.exports = function (app) {
             include: [db.User]
         }).then(function(results) {
             var price = 0;
+            var username;
             for(var i = 0; i < results.length; i++) {
                 if(results[i].price) {
                     price += parseInt(results[i].price);
                 }
+                if(results[i].User.firstname) {
+                    username = results[0].User.firstname;
+                }
             }
+            console.log(username);
             price = price.toFixed(2);
-            
+
             var hbsObject = {
                 items: results,
-                price: price
+                price: price,
+                username: username
             };
             console.log("=====================")
             console.log(results);
@@ -120,15 +126,15 @@ module.exports = function (app) {
     //     res.render("packagehbs", hbsObject);
     // });
 
-    // app.delete("/package/delete/:id", function(req, res) {
-    //     db.Item.destroy({
-    //         where: {
-    //             id: req.params.id
-    //         }
-    //     }).then(function(results) {
-    //         res.redirect("/package");
-    //     });
-    // });
+    app.delete("/package/delete/:id", function(req, res) {
+        db.Item.destroy({
+            where: {
+                id: req.params.id
+            }
+        }).then(function(results) {
+            res.redirect("/package");
+        });
+    });
 
     // app.get("/vendors", function (req, res) {
     //     db.Providers.findAll({order: db.sequelize.col('price')})

@@ -3,14 +3,15 @@
 <div class="container">
 <!-- User package CANNOT GET TO WORK -->
     <div class="row" id="packages-row">
-    {{#each users}}
-        {{#if this.id}}
-            <div class="col-12">
-                <h1>{{capitalizeString this.firstname}}'s Package</h1>
+        {{#if username}}
+            <div class="col-12 text-center">
+                <h1>{{username}}'s Package</h1>
+                <hr class="pb-4">
             </div>
         {{/if}}
-    {{/each}}
     </div>
+
+ 
 
 <!-- If no items have been added -->
     {{#unless items}}
@@ -27,7 +28,7 @@
     {{#each items}}
     {{!-- {{log this}} --}}
         {{#if this.image}}
-            <div class="col-md-4 col-sm-12 text-center" id="product-div">
+            <div class="col-md-4 col-sm-12 text-center d-flex justify-content-center" id="product-div">
                 <div class="card" style="width: 18rem;">
                     <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
                     <div class="card-body">
