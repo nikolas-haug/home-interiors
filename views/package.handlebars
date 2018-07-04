@@ -1,0 +1,32 @@
+<div class="container">
+
+    <div class="row">
+
+    
+
+    {{#each items}}
+    {{!-- {{log this}} --}}
+        {{#if this.image}}
+            <div class="col-md-4 col-sm-12 text-center" id="product-div">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">${{this.price}}</h5>
+                        <p class="card-text">{{this.name}}</p>
+                    
+                            <form action="/package/delete/{{this.id}}?_method=DELETE" method="POST">
+                                <button class="btn-alert">Delete Item</button>
+                            </form>
+
+                            {{!-- <button class="item-btn" type="submit" data-id="{{this.categoryId}}" data-name="{{this.name}}" data-image="{{this.image}}" data-price="{{this.price}}">choose item</button> --}}
+
+                    </div>
+                </div>
+            </div>
+        {{/if}}
+    {{/each}}
+
+    </div>
+
+
+</div>

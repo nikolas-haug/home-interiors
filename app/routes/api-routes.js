@@ -61,7 +61,35 @@ module.exports = function (app) {
                 UserId: req.user.id
             }
         }).then(function(results) {
-            console.log(results);
+            var hbsObject = {
+                items: results
+            };
+            res.render("package", hbsObject);
+        });
+    });
+
+    // app.get("/package", function(req, res) {
+    //     db.User.findOne({
+    //         where: {
+    //             id: req.user.id
+    //         }, 
+    //         include: [db.Item]
+    //     }).then(function(results) {
+    //         var hbsObject = {
+    //             items: results
+    //         };
+    //         console.log(results);
+    //         res.render("package", hbsObject);
+    //     });
+    // });
+
+    app.delete("/package/delete/:id", function(req, res) {
+        db.Item.destroy({
+            where: {
+                id: req.params.id
+            }
+        }).then(function(results) {
+            res.redirect("/package");
         });
     });
 

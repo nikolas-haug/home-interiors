@@ -4,7 +4,7 @@ module.exports = function(sequelize, Sequelize) {
         categoryId: {type: Sequelize.INTEGER, notEmpty: true},
         name: { type: Sequelize.STRING, notEmpty: true },
         image: { type: Sequelize.STRING, notEmpty: true },
-        price: { type: Sequelize.INTEGER },
+        price: { type: Sequelize.DECIMAL(10,2) },
     });
 
     Item.associate = function(models) {
