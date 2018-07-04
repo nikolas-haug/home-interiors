@@ -23,6 +23,7 @@
 
 <!-- Display items in package -->
     <div class="row">
+
     {{#each items}}
     {{!-- {{log this}} --}}
         {{#if this.image}}
@@ -32,7 +33,7 @@
                     <div class="card-body">
                         <h5 class="card-title">${{this.price}}</h5>
                         <p class="card-text">{{this.name}}</p>
-                    
+
                             <form action="/package/delete/{{this.id}}?_method=DELETE" method="POST">
                                 <button class="btn-alert">Delete Item</button>
                             </form>
@@ -44,6 +45,7 @@
             </div>
         {{/if}}
     {{/each}}
+
     </div>
 
 <!-- Requiring logic entered in package-routes.js -->
@@ -52,4 +54,5 @@
             <h2 class="text-center">TOTAL PACKAGE: ${{price}}</h2>
         </div>
     </div>
+
 </div>

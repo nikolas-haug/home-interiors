@@ -55,33 +55,35 @@ module.exports = function (app) {
         );
     });
 
-    app.get("/package", function(req, res) {
-        db.Item.findAll({
-            where: {
-                UserId: req.user.id
-            }
-        }).then(function(results) {
-            var hbsObject = {
-                items: results
-            };
-            res.render("package", hbsObject);
-        });
-    });
-
     // app.get("/package", function(req, res) {
-    //     db.User.findOne({
+    //     db.Item.findAll({
     //         where: {
-    //             id: req.user.id
-    //         }, 
-    //         include: [db.Item]
+    //             UserId: req.user.id
+    //         }
     //     }).then(function(results) {
     //         var hbsObject = {
     //             items: results
     //         };
-    //         console.log(results);
     //         res.render("package", hbsObject);
     //     });
     // });
+
+    app.get("/package", function(req, res) {
+        db.Item.findAll({
+            where: {
+                UserId: req.user.id
+            }, 
+            include: [db.User]
+        }).then(function(results) {
+            var hbsObject = {
+                items: results
+            };
+            console.log("=====================")
+            console.log(results);
+            console.log("=====================")
+            res.render("package", hbsObject);
+        });
+    });
 
     app.delete("/package/delete/:id", function(req, res) {
         db.Item.destroy({
