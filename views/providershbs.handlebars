@@ -51,8 +51,6 @@
 
 <script>
 
-    
-
     $('.item-btn').on('click', function() {
         
         var btnVals = { 
@@ -61,8 +59,6 @@
                 image: $(this).attr('data-image'),
                 price: $(this).attr('data-price')
             };
-
-        
 
         $.ajax({
             type: 'POST',

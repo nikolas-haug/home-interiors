@@ -1,17 +1,17 @@
 <div style ="padding-bottom: 150px"></div>
 
 <div class="container">
+
 <!-- User package CANNOT GET TO WORK -->
     <div class="row" id="packages-row">
         {{#if username}}
             <div class="col-12 text-center">
                 <h1>{{username}}'s Package</h1>
+                
                 <hr class="pb-4">
             </div>
         {{/if}}
     </div>
-
- 
 
 <!-- If no items have been added -->
     {{#unless items}}
@@ -28,15 +28,15 @@
     {{#each items}}
     {{!-- {{log this}} --}}
         {{#if this.image}}
-            <div class="col-md-4 col-sm-12 text-center d-flex justify-content-center" id="product-div">
+            <div class="col-md-4 col-sm-12 text-center pb-2 justify-content-center d-flex" id="product-div">
                 <div class="card" style="width: 18rem;">
                     <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">${{this.price}}</h5>
-                        <p class="card-text">{{this.name}}</p>
+                        <p class="card-text p-2">{{this.name}}</p>
 
                             <form action="/package/delete/{{this.id}}?_method=DELETE" method="POST">
-                                <button class="btn-alert">Delete Item</button>
+                                <button class="btn-danger btn-delete">Delete Item</button>
                             </form>
 
                             {{!-- <button class="item-btn" type="submit" data-id="{{this.categoryId}}" data-name="{{this.name}}" data-image="{{this.image}}" data-price="{{this.price}}">choose item</button> --}}
@@ -50,10 +50,23 @@
     </div>
 
 <!-- Requiring logic entered in package-routes.js -->
-    <div class="row">
-        <div class="col-12">
-            <h2 class="text-center">TOTAL PACKAGE: ${{price}}</h2>
+    <div class="row pt-5">
+        <div class="col-12 text-center">
+            <h2>TOTAL PACKAGE: ${{price}}</h2>
+            {{#if items}}
+            <button id="btn-edit-package" class="p-2 m-3">Edit Package</button>
+            {{/if}}
         </div>
     </div>
 
 </div>
+
+<script>
+
+    $('.btn-delete').hide();
+
+    $('#btn-edit-package').click(function(){
+        $('.btn-delete').slideToggle();
+    });
+
+</script>
