@@ -6,5 +6,14 @@ module.exports = function(sequelize, Sequelize) {
         image: { type: Sequelize.STRING, notEmpty: true },
         price: { type: Sequelize.INTEGER },
     });
+
+    Item.associate = function(models) {
+        Item.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    }
+
     return Item;
 }
