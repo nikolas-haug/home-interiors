@@ -55,6 +55,16 @@ module.exports = function (app) {
         );
     });
 
+    app.get("/package", function(req, res) {
+        db.Item.findAll({
+            where: {
+                UserId: req.user.id
+            }
+        }).then(function(results) {
+            console.log(results);
+        });
+    });
+
     // app.get("/vendors", function (req, res) {
     //     db.Providers.findAll({order: db.sequelize.col('price')})
     //         .then(function (results) {
