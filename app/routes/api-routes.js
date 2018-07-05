@@ -82,32 +82,6 @@ module.exports = function (app) {
         });
     });
 
-    // db.Packages.findAll({
-    //     include: ['venue', 'photographer', 'music', 'florist', 'kitchen', 'door'],
-    // }).then(function (results) {
-    //     var price = 0;
-    //     for (var i=0; i < results.length; i++) {
-    //         if (results[i].venue)
-    //             price += results[i].venue.price;
-    //         if (results[i].photographer)
-    //             price += results[i].photographer.price;
-    //         if (results[i].kitchen)
-    //             price += results[i].kitchen.price;
-    //         if (results[i].door)
-    //             price += results[i].door.price;
-    //         if (results[i].music)
-    //             price += results[i].music.price;
-    //         if (results[i].florist)
-    //             price += results[i].florist.price;
-    //     }
-
-    //     var hbsObject = {
-    //         package: results,
-    //         price: price
-    //     };
-    //     res.render("packagehbs", hbsObject);
-    // });
-
     app.delete("/package/delete/:id", function(req, res) {
         db.Item.destroy({
             where: {
@@ -117,76 +91,6 @@ module.exports = function (app) {
             res.redirect("/package");
         });
     });
-
-    // app.get("/vendors", function (req, res) {
-    //     db.Providers.findAll({order: db.sequelize.col('price')})
-    //         .then(function (results) {
-    //             console.log(results);
-    //             // res.json(results);
-    //             var hbsObject = {
-    //                 vendor: results
-    //             };
-    //             res.render("providershbs", hbsObject);
-    //         });
-    // });
-
-    // app.get("/vendors/:budget", function (req, res) {
-    //     db.Providers.findAll({
-    //         where: {
-    //             budget: req.params.budget
-    //         }
-    //     })
-    //         .then(function (results) {
-    //             // console.log(results);
-    //             // res.json(results);
-    //             var hbsObject = {
-    //                 vendor: results
-    //             };
-    //             res.render("providershbs", hbsObject);
-    //         });
-    // });
-
-    // app.get("/api/vendors/:type/:budget?", function (req, res) {
-    //     if (req.params.type && req.params.budget === "undefined") {
-    //         db.Providers.findAll({
-    //             where: {
-    //                 type: req.params.type
-    //             }
-    //         }).then(function (results) {
-    //             var hbsObject = {
-    //                 vendor: results
-    //             };
-    //             res.render("providershbs", hbsObject);
-    //             // res.json(results);
-    //         });
-
-    //     } else {
-    //         db.Providers.findAll({
-    //             where: {
-    //                 type: req.params.type,
-    //                 budget: req.params.budget
-    //             }
-    //         }).then(function (results) {
-    //             // res.json(results)
-    //             var hbsObject = {
-    //                 vendor: results
-    //             };
-    //             res.render("providershbs", hbsObject);
-    //         });
-
-    //     }
-    // });
-
-    // app.get("/profile", function (req, res) {
-    //     // console.log('something');
-    //     db.user.findAll({})
-    //         .then(function (results) {
-    //             var hbsObject = {
-    //                 user: results
-    //             };
-    //             res.render("profile", hbsObject);
-    //         });
-    // });
 
     app.get("/categories", function (req, res) {
       

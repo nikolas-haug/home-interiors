@@ -2,6 +2,26 @@
 
 <div class="container">
 
+    {{!-- bootstrap modal --}}
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                {{!-- <h5 class="modal-title">Modal title</h5> --}}
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Item removed from your package!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
 <!-- User package CANNOT GET TO WORK -->
     <div class="row" id="packages-row">
         {{#if username}}
@@ -23,7 +43,7 @@
     {{/unless}}
 
 <!-- Display items in package -->
-    <div class="row">
+    <div class="row package-items-div" style="visibility: hidden">
 
     {{#each items}}
     {{!-- {{log this}} --}}
@@ -36,7 +56,7 @@
                         <p class="card-text p-2">{{this.name}}</p>
 
                             <form action="/package/delete/{{this.id}}?_method=DELETE" method="POST">
-                                <button class="btn-danger btn-delete">Delete Item</button>
+                                <button type="submit" class="btn-danger btn-delete">Delete Item</button>
                             </form>
 
                             {{!-- <button class="item-btn" type="submit" data-id="{{this.categoryId}}" data-name="{{this.name}}" data-image="{{this.image}}" data-price="{{this.price}}">choose item</button> --}}
@@ -63,10 +83,28 @@
 
 <script>
 
-    $('.btn-delete').hide();
+    $(document).ready(function() {
+         $('.package-items-div').css('visibility','visible').hide().fadeIn('slow');
 
-    $('#btn-edit-package').click(function(){
-        $('.btn-delete').slideToggle();
-    });
+
+        $('.btn-delete').hide();
+
+        $('#btn-edit-package').click(function(){
+            $('.btn-delete').slideToggle();
+        });
+
+        $('.btn-delete').on('click', function(evt) {
+            
+            evt.preventDefault();
+
+            $('.modal').modal('show');
+            
+            setTimeout(function() {
+                $('form').submit();
+            }, 2000);
+            
+        });
+
+        });
 
 </script>
