@@ -6,7 +6,7 @@
     <div class="container py-3" id="alerts-container">
         <div class="alert alert-warning alert-dismissible mb-0" style="display: none" role="alert">
             <strong>Item selected!</strong> - find it in your <a href="/package" class="alert-link">package</a>
-            <button type="button" class="close" aria-label="Close" id="alert-btn">
+            <button type="button" class="close" aria-label="Close" id="alert-btn" data-dismiss="alert">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -73,6 +73,7 @@
             success: function(resultData) { 
     
                 $('.alert').show();
+                $("html, body").animate({ scrollTop: 0 }, "slow");
                 
             }
         }); 

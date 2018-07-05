@@ -14,7 +14,7 @@ module.exports = function (app) {
             // add additional fields
             outputSelector: ['PictureURLSuperSize'],
             paginationInput: {
-              entriesPerPage: 20
+              entriesPerPage: 50
             },
           };
 
