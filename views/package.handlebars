@@ -3,6 +3,7 @@
 <div class="container">
 
     {{!-- bootstrap modal --}}
+    {{!-- TO DO -- MAKE THIS FUNCTIONAL WITH A DELAYED FORM SUBMISSION --}}
     <div class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -55,7 +56,7 @@
                         <h5 class="card-title">${{this.price}}</h5>
                         <p class="card-text p-2">{{this.name}}</p>
 
-                            <form action="/package/delete/{{this.id}}?_method=DELETE" method="POST">
+                            <form id="remove-package" action="/package/delete/{{this.id}}?_method=DELETE" method="POST">
                                 <button type="submit" class="btn-danger btn-delete">Delete Item</button>
                             </form>
 
@@ -84,25 +85,12 @@
 <script>
 
     $(document).ready(function() {
-         $('.package-items-div').css('visibility','visible').hide().fadeIn('slow');
-
+        $('.package-items-div').css('visibility','visible').hide().fadeIn('slow');
 
         $('.btn-delete').hide();
 
         $('#btn-edit-package').click(function(){
             $('.btn-delete').slideToggle();
-        });
-
-        $('.btn-delete').on('click', function(evt) {
-            
-            evt.preventDefault();
-
-            $('.modal').modal('show');
-            
-            setTimeout(function() {
-                $('form').submit();
-            }, 2000);
-            
         });
 
         });
