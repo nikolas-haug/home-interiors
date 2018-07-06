@@ -1,6 +1,7 @@
 <div style="padding-bottom: 150px">
 </div>
 <div class="container">
+
     <div class="row" id="category-row">
         <div class="col-md-4 category" data-cat="Exterior Unfinished Modern Mahogany Doors">
             <a href="#">
@@ -27,12 +28,26 @@
             </a>
         </div>
     </div>
+
+    {{!-- for the custom search --}}
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <input type="text" id="custom-search-vals">
+            <button id="custom-search">Search</button>
+        </div>
+    </div>
+
 </div>
 
 <script>
 
     $('#category-row').on('click', '.category', function() {
         window.location.href = "/vendors/" + $(this).attr('data-cat');     
+    });
+
+    $('#custom-search').on('click', function() {
+        params = $('#custom-search-vals').val().trim();
+        window.location.href = "/vendors/" + params;    
     });
 
 </script>
