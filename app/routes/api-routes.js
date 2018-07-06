@@ -62,6 +62,7 @@ module.exports = function (app) {
         }).then(function(results) {
             var price = 0;
             var username;
+            var userNote;
             for(var i = 0; i < results.length; i++) {
                 if(results[i].price) {
                     price += parseInt(results[i].price);

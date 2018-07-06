@@ -4,6 +4,7 @@
 
     {{!-- bootstrap modal --}}
     {{!-- TO DO -- MAKE THIS FUNCTIONAL WITH A DELAYED FORM SUBMISSION --}}
+    
     <div class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -23,7 +24,30 @@
         </div>
     </div>
 
-<!-- User package CANNOT GET TO WORK -->
+    {{!-- TO DO -- bootstrap modal for ADDING - POST - package notes --}}
+    <div class="modal" id="package-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add a note to your package:</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <div class="modal-body">
+                <form action="/note/create" method="POST">
+                    <div class="form-group">
+                        {{!-- <input class="form-control" type="text" placeholder="Default input" name="body"> --}}
+                        <textarea class="form-control" rows="3" name="body" placeholder="add note here"></textarea>
+                    </div>
+                    <button type="submit">submit</button>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+
+<!-- User package -->
     <div class="row" id="packages-row">
         {{#if username}}
             <div class="col-12 text-center">
@@ -55,13 +79,9 @@
                     <div class="card-body">
                         <h5 class="card-title">${{this.price}}</h5>
                         <p class="card-text p-2">{{this.name}}</p>
-
                             <form id="remove-package" action="/package/delete/{{this.id}}?_method=DELETE" method="POST">
                                 <button type="submit" class="btn-danger btn-delete">Delete Item</button>
                             </form>
-
-                            {{!-- <button class="item-btn" type="submit" data-id="{{this.categoryId}}" data-name="{{this.name}}" data-image="{{this.image}}" data-price="{{this.price}}">choose item</button> --}}
-
                     </div>
                 </div>
             </div>
@@ -69,6 +89,22 @@
     {{/each}}
 
     </div>
+
+    {{!-- TO DO -- for posting and updating notes about the package --}}
+    
+    {{!-- <div class="row pt-5 justify-content-center">
+        <div class="col-10 text-center">
+                <h3>Notes about this package:</h3>
+                <hr>
+            {{#if notes}}
+                <p>{{notes}}</p>
+                <button id="edit-note">edit note</button>
+            {{/if}}
+            {{#unless notes}}
+                <button id="add-note">add note</button>
+            {{/unless}}
+        </div>
+    </div> --}}
 
 <!-- Requiring logic entered in package-routes.js -->
     <div class="row pt-5">
@@ -79,6 +115,8 @@
             {{/if}}
         </div>
     </div>
+
+    
 
 </div>
 
@@ -93,6 +131,6 @@
             $('.btn-delete').slideToggle();
         });
 
-        });
+    });
 
 </script>
