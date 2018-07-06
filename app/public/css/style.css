@@ -101,7 +101,7 @@ section h3.section-subheading {
 
 #about {
   background-image: url('../assets/images/room1.jpg');
-  background-color: #9E8D88;
+  background-color: rgb(194, 190, 189);
   background-size: cover;
   background-blend-mode: screen;
 }
