@@ -30,12 +30,19 @@
     </div>
 
     {{!-- for the custom search --}}
-    <div class="row justify-content-center">
+    {{!-- <div class="row justify-content-center">
         <div class="col-md-4">
             <input type="text" id="custom-search-vals">
             <button id="custom-search">Search</button>
         </div>
-    </div>
+    </div> --}}
+
+    {{!-- TO DO -- ADD CUSTOM SEARCH TO CATEGORIES PAGE --}}
+
+    {{!-- $('#custom-search').on('click', function() {   --}}
+        {{!-- params = $('#custom-search-vals').val().trim();
+        window.location.href = "/vendors/" + params;    
+    }); --}}
 
 </div>
 
@@ -43,11 +50,6 @@
 
     $('#category-row').on('click', '.category', function() {
         window.location.href = "/vendors/" + $(this).attr('data-cat');     
-    });
-
-    $('#custom-search').on('click', function() {
-        params = $('#custom-search-vals').val().trim();
-        window.location.href = "/vendors/" + params;    
     });
 
 </script>

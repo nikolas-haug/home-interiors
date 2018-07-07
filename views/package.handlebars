@@ -113,14 +113,25 @@
             {{#if items}}
             <button id="btn-edit-package" class="p-2 m-3">Edit Package</button>
             {{/if}}
-
-            <button id="gen-pdf">get PDF</button>
-
-
         </div>
     </div>
 
-    
+    {{!-- BUTTON AND LOGIC FOR GENERATING jsPDFs -- TO DO --}}
+
+    {{!-- <button id="gen-pdf">get PDF</button> --}}
+
+    {{!-- function genPDF() {
+            html2canvas(document.getElementById("pdf-container"), {
+                onrendered: function(canvas) {
+                    var img = canvas.toDataURL("image/png");
+                    var doc = new jsPDF();
+                    doc.addImage(img, "JPEG", 0, 0);
+                    doc.save("test.pdf");
+                }
+            });
+        }
+           $('#gen-pdf').on('click', genPDF);
+     --}}
 
 </div>
 
@@ -135,19 +146,6 @@
             $('.btn-delete').slideToggle();
         });
 
-        
-
-        function genPDF() {
-            html2canvas(document.getElementById("pdf-container"), {
-                onrendered: function(canvas) {
-                    var img = canvas.toDataURL("image/png");
-                    var doc = new jsPDF();
-                    doc.addImage(img, "JPEG", 0, 0);
-                    doc.save("test.pdf");
-                }
-            });
-        }
-           $('#gen-pdf').on('click', genPDF);
-    });
+        });
 
 </script>
