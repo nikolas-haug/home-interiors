@@ -19,6 +19,11 @@
 
 <body id="page-top">
 
+    <!--  Bootstrap alert -->
+    <div class="alert alert-success" role="alert">
+        <strong>Success!</strong> You have successfully registered. Please sign in to continue.
+    </div>
+
     <!-- Nav bar -->
     <nav class="navbar navbar-expand-sm navbar-dark fixed-top" id="mainNav">
         <div class="container">
@@ -90,7 +95,7 @@
                                         Remember me
                                     </label>
                                 </div>
-                                <button type="submit" class="signupbtn btn btn-primary" href="/profile.handlebars">Sign in</button>
+                                <button type="submit" class="signinbtn btn btn-primary" href="/profile.handlebars">Sign in</button>
                             </form>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/">
@@ -129,7 +134,7 @@
                 </div>
                 <div class="carousel-item">
                     <video autoplay loop muted poster="../public/assets/images/interior.png" id="background">
-                        <source src="../public/assets/video/video2.mp4" type="video/mp4">
+                        <source src="../public/assets/video/video2.mp4" alt="Home interior; Credit: Christiaan Welzel" type="video/mp4">
                     </video>
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Interior products planner</h5>
@@ -199,14 +204,12 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="col-lg-12">
-                            <p class="text-muted">Selecting items for your home interior has never been easier! 
-                                Our app makes it easy to select products for your home interior. 
-                                Currently you can select doors, kitchens and wooden flooring using 
-                                this app.  Sign-up to select a variety of interior products. Save 
-                                your interior package selections and share them with your family 
-                                members and contractors. This app will let you update and delete 
-                                items in your interior package.  Finish selecting your items to see 
-                                the estimated total package price. Start your journey with us!</p>
+                            <p class="text-muted">Selecting items for your home interior has never been easier! Our app makes it easy to select
+                                products for your home interior. Currently you can select doors, kitchen cabinets and wooden flooring
+                                using this app. Sign-up to select a variety of interior products. Save your interior package
+                                selections and share them with your family members and contractors. This app will let you
+                                update and delete items in your interior package. Finish selecting your items to see the
+                                estimated total package price. Start your journey with us!</p>
                         </div>
                     </div>
                 </div>
@@ -259,11 +262,38 @@
 
     <!-- jQuery, JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 </body>
+
+<script>
+
+    // ALERT USER TO SIGN IN AFTER SIGNING UP
+
+    // $(document).ready(function () {
+    //     var submitted = false;
+    //     $("form").each(function () {
+    //         $(this).on("submit", function (e) {
+    //             if (!submitted) {
+    //                 e.preventDefault();
+    //                 setTimeout(() => {
+    //                     $(this).submit();
+    //                 }, 3000);
+    //                 var data = $(this).serialize();
+    //                 submitted = true;
+    //             }
+    //         });
+    //     });
+    //     $('.signupbtn').click(function () {
+    //         $('.alert').show();
+    //     });
+    // });
+
+
+</script>
 
 </html>
