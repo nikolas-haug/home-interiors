@@ -62,7 +62,9 @@
                     <form action="/note/edit?_method=PUT" method="POST">
                         <div class="form-group">
                             <label for="notes">Edit notes:</label>
-                            <textarea class="form-control" rows="5" id="notes" name="body"></textarea>
+                            <textarea class="form-control" rows="5" id="edit-notes" name="body">
+                                {{!-- generate the text from the db here --}}
+                            </textarea>
                             <button type="submit" class="btn btn-primary" id="edit-note">submit</button>
                         </div>
                     </form>
@@ -118,23 +120,14 @@
 
     </div>
 
-    {{!-- TO DO -- for posting and updating notes about the package --}}
-    
+    {{!-- for posting and updating notes about the package --}}
     <div class="row pt-5 justify-content-center">
         <div class="col-10 text-center">
-                <h3>Notes about this package:</h3>
-                <hr>
-                <div id="package-notes">
-                    {{!-- generate notes and buttons here --}}
-                    {{!-- <button id="add-note-btn">ADD</button> --}}
-                </div>
-            {{!-- {{#if notes}}
-                <p>{{notes}}</p>
-                <button id="edit-note">edit note</button>
-            {{/if}}
-            {{#unless notes}}
-                <button id="add-note">add note</button>
-            {{/unless}} --}}
+            <h3>Notes about this package:</h3>
+            <hr>
+            <div id="package-notes">
+                {{!-- generate notes and buttons here --}}
+            </div>
         </div>
     </div>
 
@@ -208,9 +201,21 @@
             } else {
                 var noteText = results[0].body;
                 var packageNote = $('<p>').text(noteText);
-                var editNoteButton = $('<button id="edit-note-btn" class="btn btn-danger">').text('edit note');
+                var editNoteButton = $('<button id="edit-note-btn" class="btn btn-warning">').text('edit note');
+                // make the form for the DELETE route
+                var form = 
+                    $('<form>', {
+                        'method': 'POST',
+                        'action': "/note/delete/" + results[0].UserId + "?_method=DELETE"
+                    });
+
+                var deleteNoteButton = $('<button type="submit" id="delete-note-btn" class="btn btn-danger">').text('delete note');
+                
+                form.append(deleteNoteButton);
+
                 $('#package-notes').append(packageNote);
                 $('#package-notes').append(editNoteButton);
+                $('#package-notes').append(form);
             }
         });
 
@@ -221,6 +226,15 @@
         // for the PUT request - package notes
         $('#package-notes').on('click', '#edit-note-btn', function() {
             $('.edit-package-notes-modal').modal('show');
+
+            $.ajax({
+                method: "GET",
+                url: "/package/note"
+            }).then(function(results) {
+                var existingNote = results[0].body;
+                console.log("existing note: " + existingNote);
+                $('#edit-notes').val(existingNote);
+            });
         });
 
         });

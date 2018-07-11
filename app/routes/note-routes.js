@@ -26,4 +26,14 @@ module.exports = function (app) {
                 res.redirect("/package");
             });
     });
+
+    app.delete("/note/delete/:id", function(req, res) {
+        db.Note.destroy({
+            where: {
+                UserId: req.params.id
+            }
+        }).then(function(results) {
+            res.redirect("/package");
+        });
+    });
 }
