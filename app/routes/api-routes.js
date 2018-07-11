@@ -83,6 +83,16 @@ module.exports = function (app) {
         });
     });
 
+    app.get("/package/note", function(req, res) {
+        db.Note.findAll({
+            where: {
+                UserId: req.user.id
+            },
+        }).then(function(results) {
+            res.json(results);
+        });
+    });
+
     app.delete("/package/delete/:id", function(req, res) {
         db.Item.destroy({
             where: {

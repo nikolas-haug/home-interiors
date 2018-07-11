@@ -2,10 +2,8 @@
 
 <div class="container" id="pdf-container"> 
 
-    {{!-- bootstrap modal --}}
-    {{!-- TO DO -- MAKE THIS FUNCTIONAL WITH A DELAYED FORM SUBMISSION --}}
-    
-    <div class="modal" tabindex="-1" role="dialog">
+    {{!-- bootstrap modal for item delete--}}
+    <div class="modal item-delete-modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
@@ -24,7 +22,57 @@
         </div>
     </div>
 
-    {{!-- TO DO -- bootstrap modal for ADDING - POST - package notes --}}
+    {{!--  bootstrap modal for ADDING - POST - package notes --}}
+    <div class="modal package-notes-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                {{!-- <h5 class="modal-title">Modal title</h5> --}}
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/note/create" method="POST">
+                    <div class="form-group">
+                        <label for="notes">Notes:</label>
+                        <textarea class="form-control" rows="5" id="notes" name="body"></textarea>
+                        <button type="submit" class="btn btn-primary" id="create-note">submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    {{!--  bootstrap modal for UPDATING - PUT - package notes --}}
+        <div class="modal edit-package-notes-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    {{!-- <h5 class="modal-title">Modal title</h5> --}}
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/note/edit?_method=PUT" method="POST">
+                        <div class="form-group">
+                            <label for="notes">Edit notes:</label>
+                            <textarea class="form-control" rows="5" id="notes" name="body"></textarea>
+                            <button type="submit" class="btn btn-primary" id="edit-note">submit</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+                </div>
+            </div>
+        </div>
     
 
 <!-- User package -->
@@ -72,19 +120,23 @@
 
     {{!-- TO DO -- for posting and updating notes about the package --}}
     
-    {{!-- <div class="row pt-5 justify-content-center">
+    <div class="row pt-5 justify-content-center">
         <div class="col-10 text-center">
                 <h3>Notes about this package:</h3>
                 <hr>
-            {{#if notes}}
+                <div id="package-notes">
+                    {{!-- generate notes and buttons here --}}
+                    {{!-- <button id="add-note-btn">ADD</button> --}}
+                </div>
+            {{!-- {{#if notes}}
                 <p>{{notes}}</p>
                 <button id="edit-note">edit note</button>
             {{/if}}
             {{#unless notes}}
                 <button id="add-note">add note</button>
-            {{/unless}}
+            {{/unless}} --}}
         </div>
-    </div> --}}
+    </div>
 
 <!-- Requiring logic entered in package-routes.js -->
     <div class="row pt-5">
@@ -118,6 +170,7 @@
 <script>
 
     $(document).ready(function() {
+
         $('.package-items-div').css('visibility','visible').hide().fadeIn('slow');
 
         $('.btn-delete').hide();
@@ -132,7 +185,7 @@
                 var formId = this.id,
                     form = this;
 
-                $('.modal').modal('show');
+                $('.item-delete-modal').modal('show');
 
                 event.preventDefault();
 
@@ -140,6 +193,34 @@
                     form.submit();
                 }, 1000);
             }); 
+        });
+
+        // ajax call for the note data
+        $.ajax({
+            method: "GET",
+            url: "/package/note"
+        }).then(function(results) {
+            console.log("============================");
+            console.log(results);
+            if(results.length === 0) {
+                var addNoteButton = $('<button id="add-note-btn">').text('add note');
+                $('#package-notes').append(addNoteButton);
+            } else {
+                var noteText = results[0].body;
+                var packageNote = $('<p>').text(noteText);
+                var editNoteButton = $('<button id="edit-note-btn" class="btn btn-danger">').text('edit note');
+                $('#package-notes').append(packageNote);
+                $('#package-notes').append(editNoteButton);
+            }
+        });
+
+        // for the POST request - package notes
+        $('#package-notes').on('click', '#add-note-btn', function() {
+            $('.package-notes-modal').modal('show');
+        });
+        // for the PUT request - package notes
+        $('#package-notes').on('click', '#edit-note-btn', function() {
+            $('.edit-package-notes-modal').modal('show');
         });
 
         });

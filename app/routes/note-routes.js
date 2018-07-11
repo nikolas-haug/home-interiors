@@ -8,7 +8,7 @@ module.exports = function (app) {
 
         db.Note.create({
             body: req.body.body,
-            UserId: req.user.firstname
+            UserId: req.user.id
         })
         .then(function (result) {
             // console.log(result);
