@@ -11,7 +11,7 @@ module.exports = function(app, passport) {
 
     // POST request for /signup -- goes to the passport local-signup
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect: '/',
+        successRedirect: '/categories',
         failureRedirect: '/'
     }));
 
