@@ -37,13 +37,15 @@
                     <div class="form-group">
                         <label for="notes">Notes:</label>
                         <textarea class="form-control" rows="5" id="notes" name="body"></textarea>
-                        <button type="submit" class="btn btn-primary" id="create-note">submit</button>
+                        
+                    </div>
+                
+            </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-lg btn-primary" id="create-note">submit</button>
+                        <button type="button" class="btn btn-lg btn-secondary" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            </div>
             </div>
         </div>
     </div>
@@ -65,13 +67,13 @@
                             <textarea class="form-control" rows="5" id="edit-notes" name="body">
                                 {{!-- generate the text from the db here --}}
                             </textarea>
-                            <button type="submit" class="btn btn-primary" id="edit-note">submit</button>
+                </div>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-lg btn-primary" id="edit-note">submit</button>
+                            <button type="button" class="btn btn-lg btn-secondary" data-dismiss="modal">Cancel</button>
+                        </div>
+                     </form>
                 </div>
             </div>
         </div>
@@ -121,6 +123,7 @@
     </div>
 
     {{!-- for posting and updating notes about the package --}}
+    {{#if items}}
     <div class="row pt-5 justify-content-center">
         <div class="col-10 text-center">
             <h3>Notes about this package:</h3>
@@ -130,6 +133,7 @@
             </div>
         </div>
     </div>
+    {{/if}}
 
 <!-- Requiring logic entered in package-routes.js -->
     <div class="row pt-5">
@@ -170,6 +174,11 @@
         $('.item-delete-btn').hide();
 
         $('#btn-edit-package').click(function(){
+
+            $(this).text(function(i, v){
+               return v === 'Edit Package' ? 'Undo' : 'Edit Package'
+            });
+            
             $('.item-delete-btn, #delete-note-form, #edit-note-btn').slideToggle();
         });
 
@@ -202,7 +211,7 @@
             } else {
                 var noteText = results[0].body;
                 var packageNote = $('<p>').text(noteText);
-                var editNoteButton = $('<button id="edit-note-btn" class="btn btn-warning">').text('edit note').hide();
+                var editNoteButton = $('<button id="edit-note-btn" class="btn btn-warning p-2 m-1">').text('edit note').hide();
                 // make the form for the DELETE route
                 var form = 
                     $('<form>', {
@@ -211,7 +220,7 @@
                         'action': "/note/delete/" + results[0].UserId + "?_method=DELETE"
                     });
 
-                var deleteNoteButton = $('<button type="submit" id="delete-note-btn" class="btn btn-danger">').text('delete note');
+                var deleteNoteButton = $('<button type="submit" id="delete-note-btn" class="btn btn-danger p-2 m-1">').text('delete note');
                 
                 form.append(deleteNoteButton).hide();
 

@@ -65,7 +65,7 @@ module.exports = function (app) {
             var userNote;
             for(var i = 0; i < results.length; i++) {
                 if(results[i].price) {
-                    price += parseInt(results[i].price);
+                    price += parseFloat(results[i].price);
                 }
                 if(results[i].User.firstname) {
                     username = results[0].User.firstname;
