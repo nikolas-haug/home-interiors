@@ -110,7 +110,7 @@
                         <h5 class="card-title">${{this.price}}</h5>
                         <p class="card-text p-2">{{this.name}}</p>
                             <form class="remove-package" action="/package/delete/{{this.id}}?_method=DELETE" method="POST">
-                                <button class="btn-danger btn-delete">Delete Item</button>
+                                <button class="btn-danger item-delete-btn">Delete Item</button>
                             </form>
                     </div>
                 </div>
@@ -166,13 +166,14 @@
 
         $('.package-items-div').css('visibility','visible').hide().fadeIn('slow');
 
-        $('.btn-delete').hide();
+        // hide the edit package buttons
+        $('.item-delete-btn').hide();
 
         $('#btn-edit-package').click(function(){
-            $('.btn-delete').slideToggle();
+            $('.item-delete-btn, #delete-note-form, #edit-note-btn').slideToggle();
         });
 
-        $('.btn-delete').on('click', function() {
+        $('.item-delete-btn').on('click', function() {
 
             $('form').submit( function(event) {
                 var formId = this.id,
@@ -201,17 +202,18 @@
             } else {
                 var noteText = results[0].body;
                 var packageNote = $('<p>').text(noteText);
-                var editNoteButton = $('<button id="edit-note-btn" class="btn btn-warning">').text('edit note');
+                var editNoteButton = $('<button id="edit-note-btn" class="btn btn-warning">').text('edit note').hide();
                 // make the form for the DELETE route
                 var form = 
                     $('<form>', {
+                        'id': 'delete-note-form',
                         'method': 'POST',
                         'action': "/note/delete/" + results[0].UserId + "?_method=DELETE"
                     });
 
                 var deleteNoteButton = $('<button type="submit" id="delete-note-btn" class="btn btn-danger">').text('delete note');
                 
-                form.append(deleteNoteButton);
+                form.append(deleteNoteButton).hide();
 
                 $('#package-notes').append(packageNote);
                 $('#package-notes').append(editNoteButton);
