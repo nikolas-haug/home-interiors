@@ -128,8 +128,11 @@
         <div class="col-10 text-center">
             <h3>Notes about this package:</h3>
             <hr>
-            <div id="package-notes">
+            <div id="package-notes" class="text-justify">
                 {{!-- generate notes and buttons here --}}
+            </div>
+            <div id="package-buttons">
+                {{!-- generate note buttons here --}}
             </div>
         </div>
     </div>
@@ -225,8 +228,8 @@
                 form.append(deleteNoteButton).hide();
 
                 $('#package-notes').append(packageNote);
-                $('#package-notes').append(editNoteButton);
-                $('#package-notes').append(form);
+                $('#package-buttons').append(editNoteButton);
+                $('#package-buttons').append(form);
             }
         });
 
