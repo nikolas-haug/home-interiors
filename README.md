@@ -1,8 +1,3 @@
-# Project2
-Small business owner who provide customize doors, kitchen to the local clients have hard time getting more customer engagement 
-in their websites. Clients are usually have budget constraints and they want to know how much will the products costs. 
-This app gets the user data and let user select the main door and other interior doors and kitchen for their homes. 
-Users can save and update the selected item in their profile. 
-This app helps the user to make better decision and increase the customer engagement with the contractor.
+# FRNSH
 
-
+This web application is designed to facilitate customer engagement for the small business owner. In this particular instance, the products advertised are customized doors, kitchen cabinets, and wood flooring. Considering the budget restraints that clients might have, this app allows the user to make detailed selections from a wide variety of prodcuts in each category, storing their choices, and the accumulated price of these selections, in an authenticated user package for later scrutinization. Users can then udate and delete the selected items in their package as they compare it with their overall budget.
