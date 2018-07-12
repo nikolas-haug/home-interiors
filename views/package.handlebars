@@ -128,11 +128,8 @@
         <div class="col-10 text-center">
             <h3>Notes about this package:</h3>
             <hr>
-            <div id="package-notes" class="text-justify">
+            <div id="package-notes">
                 {{!-- generate notes and buttons here --}}
-            </div>
-            <div id="package-buttons">
-                {{!-- generate note buttons here --}}
             </div>
         </div>
     </div>
@@ -179,7 +176,7 @@
         $('#btn-edit-package').click(function(){
 
             $(this).text(function(i, v){
-               return v === 'Edit Package' ? 'Undo' : 'Edit Package'
+               return v === 'Edit Package' ? 'cancel' : 'Edit Package'
             });
             
             $('.item-delete-btn, #delete-note-form, #edit-note-btn').slideToggle();
@@ -228,8 +225,8 @@
                 form.append(deleteNoteButton).hide();
 
                 $('#package-notes').append(packageNote);
-                $('#package-buttons').append(editNoteButton);
-                $('#package-buttons').append(form);
+                $('#package-notes').append(editNoteButton);
+                $('#package-notes').append(form);
             }
         });
 
