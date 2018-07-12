@@ -8,16 +8,16 @@ This web application is designed to facilitate customer engagement for the small
 
 ## Technologies used:
 
-  *Node.js
-  *Bootstrap
-  *eBay API (for development purposes)
-  *Passport.js
-  *Express.js
-  *Handlebars.js
+  * Node.js
+  * Bootstrap
+  * eBay API (for development purposes)
+  * Passport.js
+  * Express.js
+  * Handlebars.js
 
 ## Contributors
 
-  *Nikolas Haug
-  *Barbey Ng - <https://github.com/barbeyng>
-  *Mirza <https://github.com/mrhdigital>
+  * Nikolas Haug
+  * Barbey Ng - <https://github.com/barbeyng>
+  * Mirza <https://github.com/mrhdigital>
 
