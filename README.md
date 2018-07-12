@@ -19,5 +19,5 @@ This web application is designed to facilitate customer engagement for the small
 
   * Nikolas Haug
   * Barbey Ng - <https://github.com/barbeyng>
-  * Mirza <https://github.com/mrhdigital>
+  * Mirza - <https://github.com/mrhdigital>
 
