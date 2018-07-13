@@ -13,9 +13,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Item removed from your package!</p>
+                <p>Remove from package?</p>
             </div>
             <div class="modal-footer">
+                {{!-- confirm delete button --}}
+                <button id="confirm-delete" class="btn btn-warning">confirm</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
             </div>
@@ -191,9 +193,11 @@
 
                 event.preventDefault();
 
-                setTimeout( function () { 
+                //to confirm the button click
+                $('#confirm-delete').on('click', function() {
                     form.submit();
-                }, 1000);
+                });
+
             }); 
         });
 
