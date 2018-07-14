@@ -13,10 +13,12 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Item removed from your package!</p>
+                <p>Remove from package?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                {{!-- confirm delete button --}}
+                <button id="confirm-delete" class="btn btn-warning">confirm</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">cancel</button>
             </div>
             </div>
         </div>
@@ -78,7 +80,6 @@
             </div>
         </div>
     
-
 <!-- User package -->
     <div class="row" id="packages-row">
         {{#if username}}
@@ -183,7 +184,8 @@
 
         $('.item-delete-btn').on('click', function() {
 
-            $('form').submit( function(event) {
+            // specify the form here
+            $('.remove-package').submit( function(event) {
                 var formId = this.id,
                     form = this;
 
@@ -191,9 +193,16 @@
 
                 event.preventDefault();
 
-                setTimeout( function () { 
+                //to confirm the button click
+                $('#confirm-delete').on('click', function() {
                     form.submit();
-                }, 1000);
+                });
+
+                // to stop the form submission after modal dismiss
+                $('.item-delete-modal').on('hidden.bs.modal', function() {
+                    $('form').off();
+                });
+
             }); 
         });
 
