@@ -42,6 +42,16 @@ body {
   color: #fff;
 }
 
+@media (max-width: 575px) {
+  #mainNav {
+    position: absolute;
+  }
+  .masthead {
+    position: relative;
+    top: 102px;
+  }
+}
+
 .dropdown-menu {
   background:#354351;
   opacity: 1;
