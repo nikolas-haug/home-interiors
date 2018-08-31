@@ -14,6 +14,7 @@ This web application is designed to facilitate customer engagement for the small
   * Passport.js
   * Express.js
   * Handlebars.js
+  * MySQL
 
 ## Contributors
 
